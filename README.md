@@ -1,16 +1,29 @@
-# Harbor Lane Book Club Tracker
+# 📚 Harbor Lane Book Club Tracker
 
-A Python utility designed to automate weekly reading statistics, report generation, and persistent data storage.
+A lightweight **Python** utility designed to automate weekly reading statistics, timestamped report generation, and persistent data serialization.
 
-## 💡 Why I Built This 
-I built this tracker to automate repetitive statistical summaries and preserve application state across sessions without setting up a full database server. Combining datetime audit logging with pickle object serialization allowed me to generate both human-readable reports and reloadable binary snapshots.
+## 💡 Why I Built This
+I built this tracker to automate repetitive statistical summaries and preserve application state across sessions without setting up a full database server. Combining `datetime` audit logging with `pickle` object serialization allowed me to generate both human-readable reports and reloadable binary snapshots.
 
-## Features
-- **Statistical Summary:** Calculates weekly average page counts across member logs.
-- **Automated Reporting:** Generates timestamped human-readable summaries in `minutes.txt` using `datetime`.
-- **State Persistence:** Serializes session metrics into `club_stats.pkl` via `pickle` for future retrieval.
+## ✨ Key Features
+* 📊 **Statistical Summary:** Calculates weekly average page counts across member reading logs.
+* 📝 **Automated Reporting:** Generates timestamped human-readable summaries in `minutes.txt` using Python's `datetime` module.
+* 💾 **State Persistence:** Serializes session metrics into `club_stats.pkl` via `pickle` for fast reload and retrieval.
 
-## Usage
-```bash
-python book_club_tracker.py
-```
+## 📂 Project Structure
+* 🐍 `book_club_tracker.py` — Core script that computes reading averages, formats timestamps, and writes output artifacts.
+* 📄 `minutes.txt` — Generated plain-text summary report with audit timestamps.
+* 🗄️ `club_stats.pkl` — Serialized binary snapshot of session metrics.
+
+## 🚀 Quick Start & Usage
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com
+   cd Harbor-lane-book-club
+   ```
+
+2. **Run the reading tracker:**
+   ```bash
+   python book_club_tracker.py
+   ```
