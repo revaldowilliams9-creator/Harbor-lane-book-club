@@ -1,7 +1,3 @@
-# This program works out the average pages read, shows today's date,
-# saves a summary to a text file, and saves the stats with pickle.
-# (Oliver, 2023, Chapters 5-8)
-
 import pickle
 from datetime import date
 
