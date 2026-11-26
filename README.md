@@ -19,7 +19,7 @@ I built this tracker to automate repetitive statistical summaries and preserve a
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com
+   git clone https://github.com/revaldowilliams9-creator/Harbor-lane-book-club.git
    cd Harbor-lane-book-club
    ```
 
