@@ -1,48 +1,59 @@
 import pickle
 from datetime import date
 
-# This function works out the average of a list of numbers
+
 def calculate_average_pages(pages_list):
-    total = sum(pages_list)           # add all the numbers together
-    average = total / len(pages_list) # divide by how many there are
-    return average
+    """Return the average of a list of page counts, or 0 if empty."""
+    if not pages_list:
+        return 0.0
+    return sum(pages_list) / len(pages_list)
 
-# ---- Main program ----
 
-# Pages read by each member this week
-pages = [120, 85, 200, 60, 150]
+def get_member_pages():
+    """Prompt the user to enter comma-separated page counts."""
+    raw_input = input("Enter pages read by each member (comma-separated, e.g. 120, 85, 200): ")
+    pages = []
+    for item in raw_input.split(","):
+        cleaned = item.strip()
+        if cleaned.isdigit():
+            pages.append(int(cleaned))
+        elif cleaned:
+            print(f"Skipping invalid entry: '{cleaned}'")
+    return pages
 
-# Work out the average pages
-average_pages = calculate_average_pages(pages)
 
-# Get today's date and format it nicely e.g. "14 October 2026"
-today = date.today()
-today_text = today.strftime("%d %B %Y")
+def main():
+    pages = get_member_pages()
+    if not pages:
+        print("No valid page numbers entered. Exiting.")
+        return
 
-# ---- Print the summary ----
-print("Average pages read this week:", average_pages)
-print("Today's date:", today_text)
+    average_pages = round(calculate_average_pages(pages), 2)
+    today_text = date.today().strftime("%d %B %Y")
 
-# ---- Save the summary to a text file ----
-with open("minutes.txt", "w") as f:
-    f.write("Average pages read this week: " + str(average_pages) + "\n")
-    f.write("Today's date: " + today_text + "\n")
+    print(f"\nAverage pages read this week: {average_pages}")
+    print(f"Date: {today_text}")
 
-# ---- Save the club stats using pickle ----
+    # Append to minutes.txt so past weeks are preserved
+    with open("minutes.txt", "a", encoding="utf-8") as f:
+        f.write(f"[{today_text}] Members: {len(pages)} | Average Pages: {average_pages}\n")
 
-# Put the data into a dictionary
-club_stats = {
-    "average_pages": average_pages,
-    "date": today_text
-}
+    # Save structured session stats using pickle
+    club_stats = {
+        "date": today_text,
+        "member_count": len(pages),
+        "pages": pages,
+        "average_pages": average_pages,
+    }
 
-# Save the dictionary to a pickle file
-with open("club_stats.pkl", "wb") as f:
-    pickle.dump(club_stats, f)
+    with open("club_stats.pkl", "wb") as f:
+        pickle.dump(club_stats, f)
 
-# ---- Load and verify the pickle file ----
-with open("club_stats.pkl", "rb") as f:
-    loaded_stats = pickle.load(f)
+    with open("club_stats.pkl", "rb") as f:
+        loaded_stats = pickle.load(f)
 
-print("Loaded stats:", loaded_stats)
-print("Summary saved to minutes.txt and club_stats.pkl")
+    print("Verified saved stats:", loaded_stats)
+
+
+if __name__ == "__main__":
+    main()
