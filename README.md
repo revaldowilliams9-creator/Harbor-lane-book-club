@@ -27,6 +27,5 @@ I built this tracker to automate repetitive statistical summaries and preserve a
    ```bash
    python book_club_tracker.py
    ```
-
-   
+## 📸 Live Preview
 <img width="608" height="98" alt="image" src="https://github.com/user-attachments/assets/f0943b78-6eef-494e-8a08-03da5f4cc15d" />
